@@ -1,125 +1,69 @@
-type Project = {
+export interface ContactItem {
   name: string
-  description: string
-  link: string
-  video: string
+  href: string
+}
+
+export interface GalleryItem {
   id: string
+  src: string
+  alt: string
 }
 
-type WorkExperience = {
-  company: string
-  title: string
-  start: string
-  end: string
-  link: string
+export interface FaqItem {
   id: string
+  question: string
+  answer: string
 }
 
-type BlogPost = {
-  title: string
-  description: string
-  link: string
-  uid: string
-}
-
-type SocialLink = {
-  label: string
-  link: string
-}
-
-export const PROJECTS: Project[] = [
+export const FAQ_ITEMS: FaqItem[] = [
   {
-    name: 'Motion Primitives Pro',
-    description:
-      'Advanced components and templates to craft beautiful websites.',
-    link: 'https://pro.motion-primitives.com/',
-    video:
-      'https://res.cloudinary.com/read-cv/video/upload/t_v_b/v1/1/profileItems/W2azTw5BVbMXfj7F53G92hMVIn32/newProfileItem/d898be8a-7037-4c71-af0c-8997239b050d.mp4?_a=DATAdtAAZAA0',
-    id: 'project1',
+    id: 'faq-1',
+    question: "What's this?",
+    answer:
+      'This is a legacy website of a Swedish youth company - just because we still own the domain :) We also want to inspire other youths to take this opportunity as seriously as we did. We sold edible nail polish.',
   },
   {
-    name: 'Motion Primitives',
-    description: 'UI kit to make beautiful, animated interfaces.',
-    link: 'https://motion-primitives.com/',
-    video:
-      'https://res.cloudinary.com/read-cv/video/upload/t_v_b/v1/1/profileItems/W2azTw5BVbMXfj7F53G92hMVIn32/XSfIvT7BUWbPRXhrbLed/ee6871c9-8400-49d2-8be9-e32675eabf7e.mp4?_a=DATAdtAAZAA0',
-    id: 'project2',
+    id: 'faq-2',
+    question: 'Edible nail polish?',
+    answer:
+      'This is a legacy website of an old youth company - just because we still own the domain :)',
   },
 ]
 
-export const WORK_EXPERIENCE: WorkExperience[] = [
+export const CONTACT_ITEMS: ContactItem[] = [
   {
-    company: 'Reglazed Studio',
-    title: 'CEO',
-    start: '2024',
-    end: 'Present',
-    link: 'https://ibelick.com',
-    id: 'work1',
+    name: 'Augustus Kilman',
+    href: 'https://www.linkedin.com/in/augustus-kilman-5a979a2b5/',
   },
   {
-    company: 'Freelance',
-    title: 'Design Engineer',
-    start: '2022',
-    end: '2024',
-    link: 'https://ibelick.com',
-    id: 'work2',
+    name: 'Fred Bergwitz',
+    href: 'https://www.linkedin.com/in/fred-bergwitz-619bb81a1/',
   },
   {
-    company: 'Freelance',
-    title: 'Front-end Developer',
-    start: '2017',
-    end: 'Present',
-    link: 'https://ibelick.com',
-    id: 'work3',
+    name: 'Ken Östling',
+    href: 'https://www.linkedin.com/in/ken-östling-5a979a2b5/',
   },
 ]
 
-export const BLOG_POSTS: BlogPost[] = [
+export const GALLERY_ITEMS: GalleryItem[] = [
   {
-    title: 'Exploring the Intersection of Design, AI, and Design Engineering',
-    description: 'How AI is changing the way we design',
-    link: '/blog/exploring-the-intersection-of-design-ai-and-design-engineering',
-    uid: 'blog-1',
+    id: 'gallery-1',
+    src: 'https://nagi.ams3.cdn.digitaloceanspaces.com/project-images/slide-1-vertical-min.png',
+    alt: 'Project image 1',
   },
   {
-    title: 'Why I left my job to start my own company',
-    description:
-      'A deep dive into my decision to leave my job and start my own company',
-    link: '/blog/exploring-the-intersection-of-design-ai-and-design-engineering',
-    uid: 'blog-2',
+    id: 'gallery-2',
+    src: 'https://nagi.ams3.cdn.digitaloceanspaces.com/project-images/slide-2-vertical-min.png',
+    alt: 'Project image 2',
   },
   {
-    title: 'What I learned from my first year of freelancing',
-    description:
-      'A look back at my first year of freelancing and what I learned',
-    link: '/blog/exploring-the-intersection-of-design-ai-and-design-engineering',
-    uid: 'blog-3',
+    id: 'gallery-3',
+    src: 'https://nagi.ams3.cdn.digitaloceanspaces.com/project-images/slide-3-vertical-min.png',
+    alt: 'Project image 3',
   },
   {
-    title: 'How to Export Metadata from MDX for Next.js SEO',
-    description: 'A guide on exporting metadata from MDX files to leverage Next.js SEO features.',
-    link: '/blog/example-mdx-metadata',
-    uid: 'blog-4',
+    id: 'gallery-4',
+    src: 'https://nagi.ams3.cdn.digitaloceanspaces.com/project-images/slide-4-vertical-min.png',
+    alt: 'Project image 4',
   },
 ]
-
-export const SOCIAL_LINKS: SocialLink[] = [
-  {
-    label: 'Github',
-    link: 'https://github.com/ibelick',
-  },
-  {
-    label: 'Twitter',
-    link: 'https://twitter.com/ibelick',
-  },
-  {
-    label: 'LinkedIn',
-    link: 'https://www.linkedin.com/in/ibelick',
-  },
-  {
-    label: 'Instagram',
-    link: 'https://www.instagram.com/ibelick',
-  },
-]
-
-export const EMAIL = 'your@email.com'
