@@ -63,14 +63,29 @@ function ThemeSwitch() {
 
 export function Footer() {
   return (
-    <footer className="relative mt-24 border-t border-zinc-100 px-0 py-12 dark:border-zinc-800">
-      <div className="flex items-center justify-between">
-        <Logo className="h-auto w-36 text-black dark:text-white" />
-
-        <div className="text-sm text-zinc-400">
-          <ThemeSwitch />
-        </div>
-      </div>
+    <footer className="my-24">
+      <Logo className="mb-12 h-auto w-36 text-black dark:text-white" />
     </footer>
   )
 }
+
+/*
+<Logo className="h-auto w-36 text-black dark:text-white" />
+
+<div className="text-sm text-zinc-400">
+  <ThemeSwitch />
+</div>
+
+<div className="my-12 flex gap-2">
+  <img
+    className="h-6 w-auto rounded-sm"
+    src="https://nagi.ams3.cdn.digitaloceanspaces.com/dagy.jpg"
+    alt=""
+  />
+  <img
+    className="h-6 w-auto rounded-sm"
+    src="https://nagi.ams3.cdn.digitaloceanspaces.com/UF_Logo_Vit.png"
+    alt=""
+  />
+</div>
+*/

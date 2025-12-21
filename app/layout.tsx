@@ -17,11 +17,11 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   title: {
-    default: 'Nim - Personal website template',
-    template: '%s | Nim',
+    default: 'Nagi — Old youth company',
+    template: '%s | Nagi',
   },
   description:
-    'Nim is a free and open-source personal website template built with Next.js 15, React 19 and Motion-Primitives.',
+    'Nagi is a Swedish youth company (UF) from Danderyds Gymnasium 2023-2024. ',
 }
 
 export default function RootLayout({

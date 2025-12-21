@@ -5,6 +5,8 @@
 @theme {
   --font-neue: 'neue-haas-unica', sans-serif;
   --font-ballinger: 'ballinger-mono', sans-serif;
+
+  --ease-snappy: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 /*
