@@ -64,7 +64,12 @@ function ThemeSwitch() {
 export function Footer() {
   return (
     <footer className="my-24">
-      <Logo className="mb-12 h-auto w-36 text-black dark:text-white" />
+      <Logo className="mx-auto -mb-12 h-auto w-36 text-black dark:text-white" />
+      <img
+        src="/footer.jpeg"
+        alt="Footer decoration"
+        className="relative -z-1 block h-auto w-full rounded-xl"
+      />
     </footer>
   )
 }
