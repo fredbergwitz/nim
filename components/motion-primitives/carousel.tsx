@@ -79,7 +79,7 @@ export type CarouselProps = {
   index?: number;
   onIndexChange?: (newIndex: number) => void;
   disableDrag?: boolean;
-};
+} & React.HTMLAttributes<HTMLDivElement>;
 
 function Carousel({
   children,
@@ -88,6 +88,7 @@ function Carousel({
   index: externalIndex,
   onIndexChange,
   disableDrag = false,
+  ...props
 }: CarouselProps) {
   const [internalIndex, setInternalIndex] = useState<number>(initialIndex);
   const isControlled = externalIndex !== undefined;
@@ -106,8 +107,8 @@ function Carousel({
       onIndexChange={handleIndexChange}
       disableDrag={disableDrag}
     >
-      <div className={cn('group/hover relative', className)}>
-        <div className='overflow-hidden'>{children}</div>
+      <div className={cn('group/hover relative', className)} {...props}>
+        {children}
       </div>
     </CarouselProvider>
   );

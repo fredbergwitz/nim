@@ -3,7 +3,8 @@ import { AnimatedBackground } from '@/components/motion-primitives/animated-back
 import { Logo } from '@/components/ui/logo'
 import { Dot, CircleDot } from 'lucide-react'
 import { useTheme } from 'next-themes'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
+import { motion, useScroll, useTransform, useSpring } from 'motion/react'
 
 const THEMES_OPTIONS = [
   {
@@ -62,10 +63,23 @@ function ThemeSwitch() {
 }
 
 export function Footer() {
+  const containerRef = useRef<HTMLElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start end', 'end end'],
+  })
+
+  const scale = useSpring(useTransform(scrollYProgress, [0, 1.2], [1, 1.4]), {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  })
+
   return (
-    <footer className="my-24">
+    <footer ref={containerRef} className="my-24">
       <Logo className="mx-auto -mb-12 h-auto w-36 text-black dark:text-white" />
-      <img
+      <motion.img
+        style={{ scale }}
         src="/footer.jpeg"
         alt="Footer decoration"
         className="relative -z-1 block h-auto w-full rounded-xl"
@@ -73,24 +87,3 @@ export function Footer() {
     </footer>
   )
 }
-
-/*
-<Logo className="h-auto w-36 text-black dark:text-white" />
-
-<div className="text-sm text-zinc-400">
-  <ThemeSwitch />
-</div>
-
-<div className="my-12 flex gap-2">
-  <img
-    className="h-6 w-auto rounded-sm"
-    src="https://nagi.ams3.cdn.digitaloceanspaces.com/dagy.jpg"
-    alt=""
-  />
-  <img
-    className="h-6 w-auto rounded-sm"
-    src="https://nagi.ams3.cdn.digitaloceanspaces.com/UF_Logo_Vit.png"
-    alt=""
-  />
-</div>
-*/

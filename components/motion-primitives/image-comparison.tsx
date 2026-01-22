@@ -24,7 +24,7 @@ export type ImageComparisonProps = {
   className?: string;
   enableHover?: boolean;
   springOptions?: SpringOptions;
-};
+} & React.HTMLAttributes<HTMLDivElement>;
 
 const DEFAULT_SPRING_OPTIONS = {
   bounce: 0,
@@ -36,6 +36,7 @@ function ImageComparison({
   className,
   enableHover,
   springOptions,
+  ...props
 }: ImageComparisonProps) {
   const [isDragging, setIsDragging] = useState(false);
   const motionValue = useMotionValue(50);
@@ -64,6 +65,18 @@ function ImageComparison({
     setSliderPosition(percentage);
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === 'ArrowLeft') {
+      const newPos = Math.max(sliderPosition - 5, 0);
+      motionValue.set(newPos);
+      setSliderPosition(newPos);
+    } else if (event.key === 'ArrowRight') {
+      const newPos = Math.min(sliderPosition + 5, 100);
+      motionValue.set(newPos);
+      setSliderPosition(newPos);
+    }
+  };
+
   return (
     <ImageComparisonContext.Provider
       value={{ sliderPosition, setSliderPosition, motionSliderPosition }}
@@ -81,6 +94,13 @@ function ImageComparison({
         onTouchMove={handleDrag}
         onTouchStart={() => !enableHover && setIsDragging(true)}
         onTouchEnd={() => !enableHover && setIsDragging(false)}
+        onKeyDown={handleKeyDown}
+        tabIndex={0}
+        role="slider"
+        aria-valuenow={sliderPosition}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        {...props}
       >
         {children}
       </div>

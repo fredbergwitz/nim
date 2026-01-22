@@ -95,7 +95,7 @@ function ProjectImage({ src, alt }: ProjectImageProps) {
           <img
             src={src}
             alt={alt}
-            className="h-[50vh] w-auto rounded-sm md:h-[70vh]"
+            className="max-h-[80vh] w-full rounded-sm object-contain md:h-[70vh] md:w-auto"
           />
         </MorphingDialogContent>
         <MorphingDialogClose
@@ -142,6 +142,13 @@ function VideoPlayer({ src }: { src: string }) {
         playsInline
         loop
         onClick={togglePlay}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault()
+            togglePlay()
+          }
+        }}
+        tabIndex={0}
         onEnded={() => setIsPlaying(false)}
       />
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
@@ -229,25 +236,31 @@ export default function PersonalPage() {
 
         <Carousel
           index={carouselIndex}
-          disableDrag
           onIndexChange={setCarouselIndex}
-          className="w-full rounded-sm"
+          className="w-full"
+          aria-label="Product packshots"
         >
-          <CarouselContent
-            transition={{ type: 'spring', stiffness: 200, damping: 25 }}
-            className="-ml-4"
-          >
-            {PACKSHOT_ITEMS.map((item, i) => {
-              const isVisible = i === carouselIndex || i === carouselIndex + 1
+          <div className="overflow-hidden rounded-sm">
+            <CarouselContent
+              transition={{ type: 'spring', stiffness: 200, damping: 25 }}
+              className="-ml-4"
+            >
+              {PACKSHOT_ITEMS.map((item, i) => {
+                const isVisible = i === carouselIndex || i === carouselIndex + 1
 
-              return (
-                <CarouselItem key={item.id} className="basis-1/2 pl-4">
-                  <ProjectImage src={item.src} alt={item.alt} />
-                </CarouselItem>
-              )
-            })}
-          </CarouselContent>
-          <CarouselNavigation classNameButton="size-10 flex justify-center items-center hover:scale-110 active:scale-100 ease-snappy duration-300 transition-transform dark:bg-white dark:[&>svg]:!stroke-zinc-950 [&>svg]:size-5" />
+                return (
+                  <CarouselItem key={item.id} className="basis-1/2 pl-4">
+                    <ProjectImage src={item.src} alt={item.alt} />
+                  </CarouselItem>
+                )
+              })}
+            </CarouselContent>
+          </div>
+          <CarouselNavigation
+            alwaysShow
+            className="relative top-auto left-auto w-full translate-y-0 justify-end gap-2 px-0 pt-2 md:absolute md:top-1/2 md:left-[-12.5%] md:w-[125%] md:-translate-y-1/2 md:justify-between md:px-2 md:pt-0"
+            classNameButton="size-10 flex justify-center items-center hover:scale-110 active:scale-100 ease-snappy duration-300 transition-transform dark:bg-white dark:[&>svg]:!stroke-zinc-950 [&>svg]:size-5 shadow-sm border border-zinc-200 dark:border-zinc-800"
+          />
         </Carousel>
       </motion.section>
 
@@ -285,6 +298,7 @@ export default function PersonalPage() {
         <ImageComparison
           className="aspect-16/10 w-full rounded-lg border border-zinc-200 dark:border-zinc-800"
           enableHover
+          aria-label="Product comparison"
         >
           <ImageComparisonImage
             src={COMPARISON_IMAGES.back}
@@ -361,7 +375,7 @@ export default function PersonalPage() {
         <h3 className="mb-5 text-base font-medium text-zinc-900 dark:text-zinc-50">
           Connect
         </h3>
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           {CONTACT_ITEMS.map((contact) => (
             <a
               key={contact.name}
@@ -375,6 +389,8 @@ export default function PersonalPage() {
                   src={contact.src}
                   alt={contact.name}
                   className="h-64 w-full object-cover"
+                  width={400}
+                  height={600}
                 />
               </div>
               <div>
